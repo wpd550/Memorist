@@ -9,14 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    var viewModel:EmojiMenoryGame = EmojiMenoryGame()
     var body: some View {
-        
         HStack(content: {
-            ForEach(0..<6 ,content: {_ in
-                CardView(isFaceup: true)
+            ForEach(viewModel.cards ,content: {card in
+                CardView(card:card).onTapGesture {
+                    self.viewModel.choose(card: card)
+                }.font(self.viewModel.font())
             })
         })
-        .foregroundColor(Color.orange).padding()
+        .foregroundColor(Color.orange).padding().font(Font.largeTitle)
     }
 }
 
@@ -26,20 +28,23 @@ struct ContentView: View {
 struct CardView: View {
     
     var isFaceup:Bool = false
+    var card:MemoryGame<String>.Card
     
     var body: some View{
-   
-        return ZStack(content: {
-            if(isFaceup)
-            {
-                RoundedRectangle(cornerRadius: 4).fill(Color.orange)
-            }else
-            {
-                RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4)
-                RoundedRectangle(cornerRadius: 4).fill(Color.white)
-                Text("😈")
-            }
-        })
+        
+        GeometryReader{
+            metrics in ZStack(content: {
+                if(self.card.isFaceup)
+                {
+                    RoundedRectangle(cornerRadius: 4).fill(Color.orange).frame(height:metrics.size.width*1.5)
+                }else
+                {
+                    RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4).frame(height:metrics.size.width*1.5)
+                    RoundedRectangle(cornerRadius: 4).fill(Color.white).frame(height:metrics.size.width*1.5)
+                    Text(self.card.content)
+                }
+            })
+        }
     }
 }
 

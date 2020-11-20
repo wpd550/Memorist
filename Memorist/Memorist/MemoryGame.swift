@@ -9,30 +9,30 @@
 import Foundation
 
 class MemoryGame<CardContent> {
-    var Cards:Array<Card>
+    var cards:Array<Card>
 
     
     func choose(card:Card) ->Void {
         print("Choose Card : \(card)")
     }
     
-    init(numbersOfItems:Int = 2) {
-        self.Cards = Array<Card>()
+    init(numbersOfItems:Int = 2,CardContentFactory:(Int) -> CardContent) {
+        self.cards = Array<Card>()
         for index in 0..<numbersOfItems {
-            self.Cards.append(Card(content: "s" as! CardContent ,index: index*2))
-            self.Cards.append(Card(content: "s" as! CardContent ,index: index*2 + 1))
+            let content = CardContentFactory(index);
+            self.cards.append(Card(id:index*2, content:content))
+            self.cards.append(Card(id:index*2 + 1, content:content))
         }
-        
+        self.cards = self.cards.shuffled()
     }
-    struct Card {
-        var index:Int
+    struct Card:Identifiable {
+        var id: Int
         var isFaceup:Bool = false
         var isMatch:Bool = false
         var content:CardContent
-        init(content:CardContent, index:Int) {
-            self.content = content
-            self.index = index
-        }
+        
+    
+        
     }
     
 }
