@@ -10,8 +10,8 @@ import Foundation
 import SwiftUI
 
 
-class EmojiMenoryGame {
-    public var model:MemoryGame<String> = createMemoryGame()
+class EmojiMenoryGame:ObservableObject {
+    @Published public var model:MemoryGame<String> = createMemoryGame()
     
     static func createMemoryGame() -> MemoryGame<String> {
         let emojis:Array<String> = ["😈","👻","👹","💩","💀"]

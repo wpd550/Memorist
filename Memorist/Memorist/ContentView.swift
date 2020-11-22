@@ -9,15 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    var viewModel:EmojiMenoryGame = EmojiMenoryGame()
+    @ObservedObject var viewModel:EmojiMenoryGame = EmojiMenoryGame()
     var body: some View {
-        HStack(content: {
-            ForEach(viewModel.cards ,content: {card in
-                CardView(card:card).onTapGesture {
-                    self.viewModel.choose(card: card)
-                }.font(self.viewModel.font())
-            })
-        })
+        Grid(self.viewModel.cards){card in
+            CardView(card:card).onTapGesture {
+                self.viewModel.choose(card: card)
+            }.font(self.viewModel.font()).aspectRatio(2/3,contentMode: .fit)
+        }
         .foregroundColor(Color.orange).padding().font(Font.largeTitle)
     }
 }
@@ -36,15 +34,18 @@ struct CardView: View {
             metrics in ZStack(content: {
                 if(self.card.isFaceup)
                 {
-                    RoundedRectangle(cornerRadius: 4).fill(Color.orange).frame(height:metrics.size.width*1.5)
+                    RoundedRectangle(cornerRadius: 4).fill(Color.orange)
                 }else
                 {
-                    RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4).frame(height:metrics.size.width*1.5)
-                    RoundedRectangle(cornerRadius: 4).fill(Color.white).frame(height:metrics.size.width*1.5)
+                    RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4)
+                    RoundedRectangle(cornerRadius: 4).fill(Color.white)
                     Text(self.card.content)
                 }
             })
         }
+        
+        
+           
     }
 }
 
