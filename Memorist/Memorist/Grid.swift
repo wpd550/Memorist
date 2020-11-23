@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 struct Grid<Item,ItemView>: View where Item:Identifiable,ItemView:View {
     
     var items:[Item]
@@ -22,19 +23,25 @@ struct Grid<Item,ItemView>: View where Item:Identifiable,ItemView:View {
     var body: some View {
         
         GeometryReader{ geometry in 
-            self.body(for: geometry.size)
+            self.body(for: GridLayout(itemCount:self.items.count,in:geometry.size))
         }
     }
     
-    func body(for size:CGSize)->some View{
+    func body(for layout:GridLayout)->some View{
         ForEach(self.items){ item in
-            self.body(for:item,size: size)
+            self.body(for:item,layout:layout)
         }
     }
     
-    func body(for item:Item,size:CGSize)->some View
+    func body(for item:Item,layout:GridLayout)->some View
     {
-        print("size \(size)");
+        
+        let index = items.firstItem(Matching:item)
+  
         return viewForItem(item)
+            .frame(width:layout.itemSize.width,height:layout.itemSize.height)
+            .position(layout.location(ofItemAt:index))
     }
 }
+
+

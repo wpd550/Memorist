@@ -14,10 +14,14 @@ struct ContentView: View {
         Grid(self.viewModel.cards){card in
             CardView(card:card).onTapGesture {
                 self.viewModel.choose(card: card)
-            }.font(self.viewModel.font()).aspectRatio(2/3,contentMode: .fit)
+            }.font(self.viewModel.font())
         }
-        .foregroundColor(Color.orange).padding().font(Font.largeTitle)
+        .foregroundColor(Color.orange)
+        .padding()
+        .font(Font.largeTitle)
     }
+    
+
 }
 
 
@@ -41,13 +45,14 @@ struct CardView: View {
                     RoundedRectangle(cornerRadius: 4).fill(Color.white)
                     Text(self.card.content)
                 }
-            })
+            }).font(Font.system(size: min(metrics.size.width, metrics.size.height)*0.80)).padding(5)
         }
-        
-        
-           
+
     }
 }
+
+
+
 
 
 
