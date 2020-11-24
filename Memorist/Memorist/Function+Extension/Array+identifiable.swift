@@ -10,13 +10,13 @@ import Foundation
 
 extension Array where Element:Identifiable
 {
-    func firstItem(Matching:Element) -> Int {
+    func firstItem(Matching:Element) -> Int? {
         for idx in 0..<self.count {
             if(self[idx].id == Matching.id)
             {
                 return idx
             }
         }
-        return 0
+        return nil
     }
 }
