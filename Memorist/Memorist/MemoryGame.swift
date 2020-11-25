@@ -8,13 +8,40 @@
 
 import Foundation
 
-struct MemoryGame<CardContent> {
+struct MemoryGame<CardContent> where CardContent:Equatable {
     var cards:Array<Card>
-
+    
+    var indexOfCardOneIsFaceup:Int?{
+        get{
+            cards.indices.filter {
+                !cards[$0].isFaceDown
+            }.one()
+        }
+        set
+        {
+            for index in cards.indices
+            {
+                cards[index].isFaceDown = index != newValue
+            }
+        }
+    }
+    
+    //struct 中在函数中改变了自己的成员变量  要加mutating
     mutating func choose(card:Card) ->Void {
-        print("Choose Card : \(card)")
-        let selectIndex = cards.firstItem(Matching:card)!
-        self.cards[selectIndex].isFaceup = !self.cards[selectIndex].isFaceup
+        if let selectIndex = cards.firstItem(Matching:card),cards[selectIndex].isFaceDown,!cards[selectIndex].isMatch{
+            if let potentialMathIndex = indexOfCardOneIsFaceup
+            {
+                if(cards[potentialMathIndex].content == cards[selectIndex].content)
+                {
+                    cards[potentialMathIndex].isMatch = true
+                    cards[selectIndex].isMatch = true
+                }
+                self.cards[selectIndex].isFaceDown = false
+            }else{
+                indexOfCardOneIsFaceup = selectIndex
+            }
+           
+        }
     }
     
   
@@ -30,12 +57,9 @@ struct MemoryGame<CardContent> {
     }
     struct Card:Identifiable {
         var id: Int
-        var isFaceup:Bool = false
+        var isFaceDown:Bool = true
         var isMatch:Bool = false
         var content:CardContent
-        
-    
-        
     }
     
 }

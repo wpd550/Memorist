@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC1902CF256B6F6E00D7A65B /* Array+identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1902CE256B6F6E00D7A65B /* Array+identifiable.swift */; };
+		BC5CBCE1256E4E59004104BC /* Array+oneIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5CBCE0256E4E59004104BC /* Array+oneIndex.swift */; };
 		BCA795C2256B5BD5002D7FE7 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA795C1256B5BD5002D7FE7 /* GridLayout.swift */; };
 		BCD8A05B2567675900A2E67C /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8A05A2567675900A2E67C /* MemoryGame.swift */; };
 		BCD8A05E25679EBB00A2E67C /* EmojiMenoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD8A05D25679EBB00A2E67C /* EmojiMenoryGame.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		BC1902CE256B6F6E00D7A65B /* Array+identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+identifiable.swift"; sourceTree = "<group>"; };
+		BC5CBCE0256E4E59004104BC /* Array+oneIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+oneIndex.swift"; sourceTree = "<group>"; };
 		BCA795C1256B5BD5002D7FE7 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		BCD8A05A2567675900A2E67C /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		BCD8A05D25679EBB00A2E67C /* EmojiMenoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMenoryGame.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				BC1902CE256B6F6E00D7A65B /* Array+identifiable.swift */,
+				BC5CBCE0256E4E59004104BC /* Array+oneIndex.swift */,
 			);
 			path = "Function+Extension";
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				BC1902CF256B6F6E00D7A65B /* Array+identifiable.swift in Sources */,
 				BCD8A05E25679EBB00A2E67C /* EmojiMenoryGame.swift in Sources */,
 				BCA795C2256B5BD5002D7FE7 /* GridLayout.swift in Sources */,
+				BC5CBCE1256E4E59004104BC /* Array+oneIndex.swift in Sources */,
 				BCD8A05B2567675900A2E67C /* MemoryGame.swift in Sources */,
 				F53E92AD2566E05B00EAF4D5 /* ContentView.swift in Sources */,
 				F5E2ADA9256A44D1007BD2EC /* Grid.swift in Sources */,

@@ -14,8 +14,9 @@ class EmojiMenoryGame:ObservableObject {
     @Published public var model:MemoryGame<String> = createMemoryGame()
     
     static func createMemoryGame() -> MemoryGame<String> {
-        let emojis:Array<String> = ["😈","👻","👹","💩","💀"]
-        let numbers:Int = Int.random(in:2..<6)
+        let emojis:Array<String> = ["😈","👻","👹","💩","💀","👺"]
+//        let numbers:Int = Int.random(in:2..<6)
+        let numbers:Int = 6
         return MemoryGame<String>(numbersOfItems: numbers) { (index) -> String in
             return emojis[index]
         }
@@ -33,16 +34,5 @@ class EmojiMenoryGame:ObservableObject {
     func shuffle()
     {
         model.cards.shuffle();
-    }
-    
-    //Mark: Font
-    func font()->Font{
-        if(self.cards.count == 5)
-        {
-            return  Font.title
-        }else
-        {
-            return Font.largeTitle
-        }
     }
 }

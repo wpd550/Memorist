@@ -14,14 +14,12 @@ struct ContentView: View {
         Grid(self.viewModel.cards){card in
             CardView(card:card).onTapGesture {
                 self.viewModel.choose(card: card)
-            }.font(self.viewModel.font())
+            }
         }
         .foregroundColor(Color.orange)
         .padding()
         .font(Font.largeTitle)
     }
-    
-
 }
 
 
@@ -33,21 +31,25 @@ struct CardView: View {
     var card:MemoryGame<String>.Card
     
     var body: some View{
-        
         GeometryReader{
             metrics in ZStack(content: {
-                if(self.card.isFaceup)
+                if(!self.card.isMatch)
                 {
-                    RoundedRectangle(cornerRadius: 4).fill(Color.orange)
-                }else
-                {
-                    RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4)
-                    RoundedRectangle(cornerRadius: 4).fill(Color.white)
-                    Text(self.card.content)
+                    if(self.card.isFaceDown)
+                    {
+                        RoundedRectangle(cornerRadius: 4).fill(Color.orange)
+                    }else
+                    {
+                        
+                        RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4)
+                        RoundedRectangle(cornerRadius: 4).fill(Color.white)
+                        Text(self.card.content)
+                        
+                    }
                 }
+              
             }).font(Font.system(size: min(metrics.size.width, metrics.size.height)*0.80)).padding(5)
         }
-
     }
 }
 
