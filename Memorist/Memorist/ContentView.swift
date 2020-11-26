@@ -18,7 +18,6 @@ struct ContentView: View {
         }
         .foregroundColor(Color.orange)
         .padding()
-        .font(Font.largeTitle)
     }
 }
 
@@ -33,26 +32,22 @@ struct CardView: View {
     var body: some View{
         GeometryReader{
             metrics in ZStack(content: {
-                if(!self.card.isMatch)
-                {
-                    if(self.card.isFaceDown)
-                    {
-                        RoundedRectangle(cornerRadius: 4).fill(Color.orange)
-                    }else
-                    {
-                        
-                        RoundedRectangle(cornerRadius: 4).stroke(lineWidth: 4)
-                        RoundedRectangle(cornerRadius: 4).fill(Color.white)
-                        Text(self.card.content)
-                        
-                    }
-                }
-              
-            }).font(Font.system(size: min(metrics.size.width, metrics.size.height)*0.80)).padding(5)
+                Pie().opacity(0.4).padding(5)
+                Text(self.card.content)
+                             
+            }).cardify(isFaceDown:self.card.isFaceDown)
+//            .font(Font.system(size: min(metrics.size.width, metrics.size.height)*scaleRate))
+//            .padding(padding)
         }
     }
-}
+    
+    //MARK:  -- View Valve
 
+    private let scaleRate:CGFloat = 0.6
+    private let padding:CGFloat = 5
+    
+    
+}
 
 
 
@@ -63,6 +58,8 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let game = EmojiMenoryGame()
+        game.choose(card: game.cards[0])
+        return  ContentView(viewModel:game)
     }
 }

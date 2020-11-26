@@ -9,9 +9,9 @@
 import Foundation
 
 struct MemoryGame<CardContent> where CardContent:Equatable {
-    var cards:Array<Card>
+    private(set) var cards:Array<Card>
     
-    var indexOfCardOneIsFaceup:Int?{
+    private var indexOfCardOneIsFaceup:Int?{
         get{
             cards.indices.filter {
                 !cards[$0].isFaceDown
@@ -44,8 +44,6 @@ struct MemoryGame<CardContent> where CardContent:Equatable {
         }
     }
     
-  
-    
     init(numbersOfItems:Int = 2,CardContentFactory:(Int) -> CardContent) {
         self.cards = Array<Card>()
         for index in 0..<numbersOfItems {
@@ -54,6 +52,10 @@ struct MemoryGame<CardContent> where CardContent:Equatable {
             self.cards.append(Card(id:index*2 + 1, content:content))
         }
         self.cards = self.cards.shuffled()
+    }
+    
+    mutating func shuffle(){
+        self.cards.shuffle()
     }
     struct Card:Identifiable {
         var id: Int

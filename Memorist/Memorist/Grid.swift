@@ -11,8 +11,8 @@ import SwiftUI
 
 struct Grid<Item,ItemView>: View where Item:Identifiable,ItemView:View {
     
-    var items:[Item]
-    var viewForItem:(Item)->ItemView
+    private var items:[Item]
+    private var viewForItem:(Item)->ItemView
     
     //逃逸必包 在函数结束之后在使用，需要@escaping
     init(_ items:[Item],viewForItem:@escaping (Item)->ItemView) {
@@ -27,13 +27,13 @@ struct Grid<Item,ItemView>: View where Item:Identifiable,ItemView:View {
         }
     }
     
-    func body(for layout:GridLayout)->some View{
+    private  func body(for layout:GridLayout)->some View{
         ForEach(self.items){ item in
             self.body(for:item,layout:layout)
         }
     }
     
-    func body(for item:Item,layout:GridLayout)->some View
+    private func body(for item:Item,layout:GridLayout)->some View
     {
         let index = items.firstItem(Matching:item)!
         return viewForItem(item)
