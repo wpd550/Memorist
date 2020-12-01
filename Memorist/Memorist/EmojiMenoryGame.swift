@@ -31,8 +31,9 @@ class EmojiMenoryGame:ObservableObject {
         model.choose(card: card)
     }
     
-    private func shuffle()
+    
+    func restartGame()
     {
-        model.shuffle();
+        model =  EmojiMenoryGame.createMemoryGame()
     }
 }
